@@ -104,12 +104,16 @@ class _HomePageState extends State<HomePage>
               createMonthSection(),
               Expanded(
                   child: Container(
-                    width: double.infinity,
-                    child: TabBarView(controller: tabController, children: [
-                      for (var i = 0; i < this.myTabs.length; i++)
-                        TabContentImage(imgSrc: 'images/pavlova.jpg',year: '2018',month: '9',)
-                    ]),
-                  ))
+                width: double.infinity,
+                child: TabBarView(controller: tabController, children: [
+                  for (var i = 0; i < this.myTabs.length; i++)
+                    TabContentImage(
+                      imgSrc: 'images/pavlova.jpg',
+                      year: '2018',
+                      month: '9',
+                    )
+                ]),
+              ))
             ],
           ),
         ),
@@ -134,11 +138,10 @@ class TabContentImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return  SizedBox(
+    return SizedBox(
         width: double.infinity,
         height: 300,
-        child:
-        Card(
+        child: Card(
           elevation: 1,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -148,9 +151,9 @@ class TabContentImage extends StatelessWidget {
                 height: 200,
               ),
               Row(
-                children:  [
+                children: [
                   Padding(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Text(
                       "June",
                       style: GoogleFonts.msMadi(
@@ -159,13 +162,22 @@ class TabContentImage extends StatelessWidget {
                       ),
                     ),
                   )
-
                 ],
-              )
+              ),
+              Row(
+                children: [
+                  Text(
+                    "2018",
+                    style: GoogleFonts.msMadi(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
-        )
-    );
+        ));
   }
 }
 
