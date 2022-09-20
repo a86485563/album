@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -48,7 +50,14 @@ class _HomePageState extends State<HomePage>
 
   Widget createMonthSection() {
     return Container(
-      color: Colors.amber[800],
+        child: DecoratedBox(
+      decoration: BoxDecoration(
+        //This is for background color
+        color: Colors.white.withOpacity(0.0),
+
+        //This is for bottom border that is needed
+        border: Border(bottom: BorderSide(color: Colors.grey.shade300, width: 2)),
+      ),
       child: Row(
         children: [
           Container(
@@ -62,7 +71,7 @@ class _HomePageState extends State<HomePage>
           )
         ],
       ),
-    );
+    ));
   }
 
   Widget createTabSection() {
@@ -72,7 +81,7 @@ class _HomePageState extends State<HomePage>
         tabs: myTabs,
         isScrollable: true,
         indicatorColor: Colors.red,
-        labelColor: Colors.white,
+        labelColor: Colors.black,
         controller: tabController,
       ),
     ));
@@ -80,7 +89,6 @@ class _HomePageState extends State<HomePage>
 
   var yearSection = Container(
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-      color: Colors.red[800],
       child: const Padding(
         padding: EdgeInsets.all(5),
         child: Text('2018'),
@@ -95,7 +103,6 @@ class _HomePageState extends State<HomePage>
           margin: const EdgeInsets.fromLTRB(5, 10, 5, 10),
           height: double.infinity,
           width: double.infinity,
-          color: Colors.blue[800],
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -137,46 +144,78 @@ class TabContentImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return SizedBox(
+    return Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey),
+          image: const DecorationImage(
+            image: AssetImage("images/dabanCastle.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
         width: double.infinity,
         height: 300,
-        child: Card(
-          elevation: 1,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              const SizedBox(
-                width: double.infinity,
-                height: 200,
-              ),
-              Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Container(),
+            ),
+            Expanded(
+              flex: 1,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(
                       "June",
                       style: GoogleFonts.msMadi(
-                        fontSize: 50,
-                        fontWeight: FontWeight.w800,
+                          fontSize: 50,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                      "2018",
+                      style: GoogleFonts.msMadi(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Text(
+                        "",
+                        style: GoogleFonts.notoSans(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white,
+                            letterSpacing: 1),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
-              Row(
-                children: [
-                  Text(
-                    "2018",
-                    style: GoogleFonts.msMadi(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
+            )
+          ],
         ));
   }
 }
